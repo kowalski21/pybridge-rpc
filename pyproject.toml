@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pybridge-rpc"
+version = "0.2.0"
+description = "End-to-end type safety from Python to TypeScript — typed RPC with automatic TS client codegen."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [{ name = "PyBridge contributors" }]
+keywords = ["rpc", "typescript", "codegen", "pydantic", "starlette", "asgi", "trpc", "type-safety"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: TypeScript",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Framework :: AsyncIO",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pydantic>=2.0",
+    "starlette>=0.30",
+    "click>=8.0",
+]
+
+[project.optional-dependencies]
+watch = ["watchfiles>=0.20"]
+
+[project.urls]
+Homepage = "https://github.com/kowalski21/pybridge"
+Repository = "https://github.com/kowalski21/pybridge"
+Issues = "https://github.com/yourname/kowalski21/issues"
+Documentation = "https://github.com/yourname/pybridge/tree/main/docs"
+
+[project.scripts]
+pybridge = "pybridge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pybridge*"]
+
+[tool.setuptools.package-data]
+pybridge = ["py.typed"]
