@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pybridge-rpc"
-version = "0.2.0"
+version = "0.2.1"
 description = "End-to-end type safety from Python to TypeScript — typed RPC with automatic TS client codegen."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -39,10 +39,10 @@ dependencies = [
 watch = ["watchfiles>=0.20"]
 
 [project.urls]
-Homepage = "https://github.com/kowalski21/pybridge"
-Repository = "https://github.com/kowalski21/pybridge"
-Issues = "https://github.com/yourname/kowalski21/issues"
-Documentation = "https://github.com/yourname/pybridge/tree/main/docs"
+Homepage = "https://github.com/kowalski21/pybridge-rpc"
+Repository = "https://github.com/kowalski21/pybridge-rpc"
+Issues = "https://github.com/kowalski21/pybridge-rpc/issues"
+Documentation = "https://github.com/kowalski21/pybridge-rpc/tree/main/docs"
 
 [project.scripts]
 pybridge = "pybridge.cli:main"
