@@ -137,7 +137,7 @@ export function createClient<T = AppRouter>(baseUrl: string, opts: ClientOptions
           if (done) return;
           buf += decoder.decode(value, { stream: true });
           let idx: number;
-          while ((idx = buf.indexOf("\n\n")) >= 0) {
+          while ((idx = buf.indexOf("\\n\\n")) >= 0) {
             const raw = buf.slice(0, idx);
             buf = buf.slice(idx + 2);
             const ev = parseSSE(raw);
@@ -224,11 +224,11 @@ function toFormData(input: unknown): FormData {
 function parseSSE(raw: string): { event: string; data: any } | null {
   let event = "message";
   const dataLines: string[] = [];
-  for (const line of raw.split("\n")) {
+  for (const line of raw.split("\\n")) {
     if (line.startsWith("event:")) event = line.slice(6).trim();
     else if (line.startsWith("data:")) dataLines.push(line.slice(5).trim());
   }
-  const dataStr = dataLines.join("\n");
+  const dataStr = dataLines.join("\\n");
   if (!dataLines.length) return { event, data: null };
   try { return { event, data: JSON.parse(dataStr) }; } catch { return { event, data: dataStr }; }
 }
@@ -249,7 +249,8 @@ function makeError(err: { code: string; message: string; data?: unknown }): PyBr
 
 
 HOOKS_RUNTIME = '''
-import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import type { UseMutationOptions, UseQueryOptions } from "@tanstack/react-query";
 
 export function createHooks<T extends Record<string, any>>(client: T) {
   return {
